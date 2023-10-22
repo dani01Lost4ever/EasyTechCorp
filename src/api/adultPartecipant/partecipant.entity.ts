@@ -1,3 +1,6 @@
+import { Types } from "mongoose";
+import { ClassTipology } from "../classTipology/classTipology.entity";
+
 export interface Partecipant {    
     id?: string;
     axeraCode: boolean; //non avendo dati riguardanti ai clienti axera per il momento ho inserito un boolean
@@ -9,7 +12,7 @@ export interface Partecipant {
     nationalInsuranceNumber: string;
     email: string;
     telephoneNumber: number;
-    tipology: string;
+    tipology: Types.ObjectId | string | ClassTipology;
     //checkbox
     iscriptionForm: boolean;
     privacyAccepted: boolean;
