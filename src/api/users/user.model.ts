@@ -4,7 +4,11 @@ import { User as iUser } from "./user.entity";
 export const userSchema = new Schema<iUser>({
   firstName: String,
   lastName: String,
-  picture: String,
+  picture: {
+    type: String,
+    default:
+      "https://w7.pngwing.com/pngs/529/832/png-transparent-computer-icons-avatar-user-profile-avatar.png",
+  },
 });
 
 userSchema.virtual("fullName").get(function () {
