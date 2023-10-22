@@ -1,12 +1,12 @@
 import { Type } from "class-transformer";
-import { IsBoolean, IsMongoId, IsNumber, IsOptional, IsString, Min } from "class-validator";
+import { IsBoolean, IsBooleanString, IsMongoId, IsNumber, IsOptional, IsString, Min } from "class-validator";
 
 
 export class AddPartecipantDTO{
 
-    @IsBoolean()
+    @IsString()
     @IsOptional()
-    axeraCode: boolean;
+    axeraCode: string;
 
 
     @IsString()
@@ -17,7 +17,7 @@ export class AddPartecipantDTO{
 
     @IsNumber()    
     @Type(() => Number)
-    @Min(1)
+    @Min(18)
     age:number;
 
     @IsString()
@@ -34,32 +34,89 @@ export class AddPartecipantDTO{
     @Min(1)
     telephoneNumber:number;
     
-    @IsString()
-    tipology: string;
+    @IsMongoId()
+    tipologyId: string;
 
     
     @IsBoolean()
+    @IsOptional()
     iscriptionForm: boolean;
     
     @IsBoolean()
+    @IsOptional()
     privacyAccepted: boolean;
     
     @IsBoolean()
+    @IsOptional()
     imageReleaseAccepted: boolean;
     
     @IsBoolean()
+    @IsOptional()
     paymentDone: boolean;
+    
+    @IsBoolean()
+    @IsOptional()
+    paymentVerified: boolean;
 }
 
 export class findPartecipantDTO{
 
+  
+    @IsMongoId()
+    @IsOptional()
+    tipologyId: string;
+    
     @IsBoolean()
     @IsOptional()
     iscriptionForm: boolean;
+    
+    @IsBoolean()
+    @IsOptional()
+    privacyAccepted: boolean;
+    
+    @IsBoolean()
+    @IsOptional()
+    imageReleaseAccepted: boolean;
+    
+    @IsBoolean()
+    @IsOptional()
+    paymentDone: boolean;
+    
+    @IsBoolean()
+    @IsOptional()
+    paymentVerified: boolean;
 }
 
 export class getOnePartecipantDTO{
 
     @IsMongoId()
     partecipantId: string;
+}
+
+export class updateDTO{
+
+  
+    @IsMongoId()
+    @IsOptional()
+    partecipantId: string;
+    
+    @IsBooleanString()
+    @IsOptional()
+    iscriptionForm: boolean;
+    
+    @IsBooleanString()
+    @IsOptional()
+    privacyAccepted: boolean;
+    
+    @IsBooleanString()
+    @IsOptional()
+    imageReleaseAccepted: boolean;
+    
+    @IsBooleanString()
+    @IsOptional()
+    paymentDone: boolean;
+    
+    @IsBooleanString()
+    @IsOptional()
+    paymentVerified: boolean;
 }
