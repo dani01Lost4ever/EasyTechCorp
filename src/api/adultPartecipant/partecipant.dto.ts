@@ -1,4 +1,5 @@
-import { IsBoolean, IsMongoId, IsNumber, IsOptional, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import { IsBoolean, IsMongoId, IsNumber, IsOptional, IsString, Min } from "class-validator";
 
 
 export class AddPartecipantDTO{
@@ -14,7 +15,9 @@ export class AddPartecipantDTO{
     @IsString()
     lastName: string;
 
-    @IsNumber()
+    @IsNumber()    
+    @Type(() => Number)
+    @Min(1)
     age:number;
 
     @IsString()
@@ -27,6 +30,8 @@ export class AddPartecipantDTO{
     email: string;
 
     @IsNumber()
+    @Type(() => Number)
+    @Min(1)
     telephoneNumber:number;
     
     @IsString()
@@ -48,6 +53,9 @@ export class AddPartecipantDTO{
 
 export class findPartecipantDTO{
 
+    @IsBoolean()
+    @IsOptional()
+    iscriptionForm: boolean;
 }
 
 export class getOnePartecipantDTO{
