@@ -1,8 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 import { Partecipant as iPartecipant } from "./partecipant.entity";
+import { v4 as uuidv4 } from "uuid";
 
 export const partecipantSchema = new Schema<iPartecipant>({
-    axeraCode: Boolean,
+    axeraCode: String,
     //dati utente
     firstName: String,
     lastName: String,
@@ -13,11 +14,24 @@ export const partecipantSchema = new Schema<iPartecipant>({
     telephoneNumber: Number,
     tipology: {type : Schema.Types.ObjectId, ref: 'ClassTipologies'},
     //checkboxS
-    iscriptionForm: Boolean,
-    privacyAccepted: Boolean,
-    imageReleaseAccepted: Boolean,
-    paymentDone: Boolean
+    iscriptionForm: {type : Boolean, default : false},
+    privacyAccepted: { type: Boolean, default: false },
+    imageReleaseAccepted: { type: Boolean, default: false },
+    paymentDone: { type: Boolean, default: false },
+    paymentVerified: { type: Boolean, default: false }
 })
+
+ partecipantSchema.pre("findOne", function (next) {
+  this.populate("parent");
+  next();
+}); 
+
+partecipantSchema.pre("save", function (next: any) {
+  if (this.axeraCode == null) {
+    this.axeraCode = uuidv4();
+  }
+  next();
+});
 
 partecipantSchema.set("toJSON", {
     virtuals: true,
