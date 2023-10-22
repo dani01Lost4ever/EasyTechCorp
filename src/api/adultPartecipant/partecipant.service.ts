@@ -24,6 +24,11 @@ export class PartecipantService{
         }
     }
 
+    async findByTipology(id?:string): Promise<iPartecipant[]> {
+        const listItem = await Partecipant.find();
+        
+        return listItem;
+      }
 
 }
 export default new PartecipantService();
