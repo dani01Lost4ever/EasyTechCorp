@@ -11,7 +11,7 @@ export const partecipantSchema = new Schema<iPartecipant>({
     nationalInsuranceNumber: String,
     email: String, 
     telephoneNumber: Number,
-    tipology: String,
+    tipology: {type : Schema.Types.ObjectId, ref: 'ClassTipologies'},
     //checkboxS
     iscriptionForm: Boolean,
     privacyAccepted: Boolean,
