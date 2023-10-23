@@ -10,6 +10,7 @@ import "./utils/auth/auth.handler";
 import { classTipologyExistsErrorExistsHandler } from "./errors/tipology-exists";
 const app = express();
 
+app.set('trust proxy', true);
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
